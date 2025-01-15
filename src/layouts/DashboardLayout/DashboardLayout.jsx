@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../../components/dashboard/Sidebar";
-import { Container, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
+import Navbar from "../../components/dashboard/Navbar";
 
 const DashboardLayout = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
@@ -30,7 +31,9 @@ const DashboardLayout = () => {
         width={sidebarStyles.width}
         left={sidebarStyles.left}
       />
-      <Container
+      <Flex
+        direction={"column"}
+        p={0}
         position={"absolute"}
         width={{
           base: "100%",
@@ -42,10 +45,10 @@ const DashboardLayout = () => {
           md: isSidebarVisible ? "30%" : 0,
           lg: isSidebarVisible ? "20%" : 0,
         }}
-        transition="left 0.5s ease-in-out"
       >
+        <Navbar />
         <Outlet />
-      </Container>
+      </Flex>
     </Flex>
   );
 };
