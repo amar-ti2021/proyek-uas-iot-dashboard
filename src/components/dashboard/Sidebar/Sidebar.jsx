@@ -9,7 +9,7 @@ const Sidebar = ({ isSidebarVisible, toggleSidebar, width, left }) => {
   const location = useLocation();
   const links = [
     { path: "/dashboard", label: "Dashboard", icon: <RxDashboard /> },
-    { path: "/dashboard/devices", label: "Devices", icon: <BsDeviceSsd /> },
+    { path: "/devices", label: "Devices", icon: <BsDeviceSsd /> },
   ];
 
   return (
@@ -17,14 +17,14 @@ const Sidebar = ({ isSidebarVisible, toggleSidebar, width, left }) => {
       <Stack
         spaceY={4}
         h={"100vh"}
-        position="relative"
+        position="fixed"
         top={0}
         width={width}
         left={left}
         shadow={"xl"}
         bgColor={"white"}
         transition="left 0.5s ease-in-out"
-        zIndex={5}
+        zIndex={9999}
       >
         <Button
           w={"5px"}
@@ -55,7 +55,9 @@ const Sidebar = ({ isSidebarVisible, toggleSidebar, width, left }) => {
             py={2}
             borderRadius="md"
             bgColor={
-              location.pathname === link.path ? "green.200" : "transparent"
+              location.pathname.startsWith(link.path)
+                ? "green.200"
+                : "transparent"
             }
             fontWeight={location.pathname === link.path ? "bold" : "regular"}
             _hover={{ bgColor: "green.300" }}
